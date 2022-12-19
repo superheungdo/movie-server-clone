@@ -5,6 +5,8 @@ import https from "https";
 import mongoose from "mongoose";
 import "dotenv/config";
 
+import routes from "./src/routes/index.js";
+
 const app = express();
 
 app.use(cors());
@@ -12,6 +14,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+app.use("/api/v1", routes);
+
+const port = process.env.PORT;
 const server = https.createServer(app);
 
 mongoose
@@ -19,8 +24,8 @@ mongoose
   .then(() => {
     console.log("MongoDB connected");
 
-    server.listen(process.env.PORT, () =>
-      console.log(`Server is listening on port ${process.env.PORT}`)
+    server.listen(port, () =>
+      console.log(`Server is listening on port ${port}`)
     );
   })
   .catch((err) => {
