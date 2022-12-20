@@ -19,7 +19,7 @@ const signup = async (req, res) => {
 
     await user.save();
 
-    const token = jwt.sign({ data: user.id }, process.env.TOKEN_SECRET, {
+    const token = jwt.sign({ data: user.id }, process.env.SECRET_KEY, {
       expiresIn: "24h",
     });
 
@@ -46,7 +46,7 @@ const signin = async (req, res) => {
     if (!user.validPassword(password))
       return responseHandler.badrequest(res, "Wrong password");
 
-    const token = jwt.sign({ data: user.id }, process.env.TOKEN_SECRET, {
+    const token = jwt.sign({ data: user.id }, process.env.SECRET_KEY, {
       expiresIn: "24h",
     });
 

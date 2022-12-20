@@ -23,13 +23,13 @@ router.post(
   body("password")
     .exists()
     .withMessage("password is required")
-    .isLength({ min: 8 })
-    .withMessage("password minimum 8 characters"),
+    .isLength({ min: 3 })
+    .withMessage("password minimum 3 characters"),
   body("confirmPassword")
     .exists()
     .withMessage("confirmPassword is required")
-    .isLength({ min: 8 })
-    .withMessage("confirmPassword minimum 8 characters")
+    .isLength({ min: 3 })
+    .withMessage("confirmPassword minimum 3 characters")
     .custom((value, { req }) => {
       if (value !== req.body.password)
         throw new Error("confirmPassword not match");
@@ -38,8 +38,8 @@ router.post(
   body("displayName")
     .exists()
     .withMessage("displayName is required")
-    .isLength({ min: 8 })
-    .withMessage("displayName minimum 8 characters"),
+    .isLength({ min: 3 })
+    .withMessage("displayName minimum 3 characters"),
   requestHandler.validate,
   userController.signup
 );
@@ -54,8 +54,8 @@ router.post(
   body("password")
     .exists()
     .withMessage("password is required")
-    .isLength({ min: 8 })
-    .withMessage("password minimum 8 characters"),
+    .isLength({ min: 3 })
+    .withMessage("password minimum 3 characters"),
   requestHandler.validate,
   userController.signin
 );

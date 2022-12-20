@@ -1,7 +1,7 @@
 import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import https from "https";
+import http from "http";
 import mongoose from "mongoose";
 import "dotenv/config";
 
@@ -17,7 +17,7 @@ app.use(cookieParser());
 app.use("/api/v1", routes);
 
 const port = process.env.PORT;
-const server = https.createServer(app);
+const server = http.createServer(app);
 
 mongoose
   .connect(process.env.MONGODB_URL)
